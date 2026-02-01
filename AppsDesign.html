@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppCraft | Premium App Design</title>
+    <style>
+        :root {
+    --primary: #6c5ce7;
+    --secondary: #a29bfe;
+    --dark: #0f0c29;
+    --light: #ffffff;
+    --gray: #b2bec3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark);
+    color: var(--light);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+nav {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: rgba(15, 12, 41, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+    padding: 150px 0 100px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--gray);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid var(--primary);
+    padding: 13px 35px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Services */
+.services {
+    padding: 100px 0;
+    background: #16123d;
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: #1c184a;
+    padding: 40px;
+    border-radius: 15px;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    padding: 80px 0 20px;
+    background: #0a081a;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.footer-info p {
+    margin-top: 15px;
+    color: var(--gray);
+}
+
+.footer-links ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.footer-links a {
+    color: var(--gray);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #1c184a;
+    padding-top: 20px;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">App<span>Craft</span></div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#work">Our Work</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#" class="btn-sm">Hire Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>We Design <span class="gradient-text">Apps That Users Love.</span></h1>
+            <p>UI/UX design se lekar prototype tak, hum aapke app idea ko reality mein badalte hain.</p>
+            <div class="hero-btns">
+                <button class="btn-primary">View Portfolio</button>
+                <button class="btn-secondary">Contact Us</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="title">Our Expertise</h2>
+            <div class="service-grid">
+                <div class="card">
+                    <div class="icon">📱</div>
+                    <h3>Mobile UI Design</h3>
+                    <p>iOS aur Android ke liye khoobsurat aur intuitive interfaces.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">✨</div>
+                    <h3>UX Research</h3>
+                    <p>User behavior ko samajh kar behtar experience design karna.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🎨</div>
+                    <h3>Prototyping</h3>
+                    <p>Interative prototypes taaki aap app banne se pehle use feel kar sakein.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <div class="logo">App<span>Craft</span></div>
+                <p>Leading App Design Agency based in India.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Let's Talk</h4>
+                <p>hello@appcraft.com</p>
+                <p>+91 98765 43210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AppCraft Designs. Built with ❤️ for Developers.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation for Navbar
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 100) {
+        nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
+    } else {
+        nav.style.boxShadow = "none";
+    }
+});
+
+// Button Alert
+document.querySelector('.btn-primary').addEventListener('click', () => {
+    alert("Hamarai latest app design works load ho rahe hain!");
+});
+    </script>
+</body>
+</html>
