@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire & Collaborate | PortFolio</title>
+    <style>
+        :root {
+    --bg: #ffffff;
+    --text: #333;
+    --card: #f9f9f9;
+    --primary: #6c63ff;
+    --glass: rgba(255, 255, 255, 0.8);
+}
+
+.dark-mode {
+    --bg: #0f172a;
+    --text: #f8fafc;
+    --card: #1e293b;
+    --glass: rgba(30, 41, 59, 0.7);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    transition: all 0.4s ease;
+    padding-bottom: 50px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+header { padding: 30px; text-align: center; }
+.logo { font-size: 24px; font-weight: 600; letter-spacing: 2px; }
+.logo span { color: var(--primary); }
+
+.welcome-section { text-align: center; padding: 40px 20px; }
+.welcome-section h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+/* Cards */
+.options-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.option-card {
+    background: var(--card);
+    width: 350px;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.option-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.option-card img { width: 80px; margin-bottom: 20px; }
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: var(--card);
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.close { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; }
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: transparent;
+    color: var(--text);
+}
+
+.submit-btn {
+    width: 100%; padding: 15px; background: var(--primary);
+    border: none; color: white; border-radius: 8px; cursor: pointer; margin-top: 10px;
+}
+
+.hidden { display: none; }
+
+/* Popup */
+.popup {
+    display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.9); z-index: 3000;
+}
+
+.popup-box {
+    background: white; color: #333; width: 320px; padding: 30px;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center; border-radius: 20px;
+}
+
+.icon-success { font-size: 50px; color: green; }
+
+footer { text-align: center; padding: 40px; opacity: 0.7; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .option-card { width: 100%; }
+    .welcome-section h1 { font-size: 1.8rem; }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Normal Mode</button>
+
+    <header>
+        <div class="logo">Gurjeet <span>STUDIO</span></div>
+    </header>
+
+    <section class="welcome-section">
+        <h1>Aapka Swagat Hai!</h1>
+        <p>Agar aapko job chahiye ya aap apna dream project banwana chahte hain, toh niche diye gaye option par click karein.</p>
+    </section>
+
+    <main class="options-grid">
+        <div class="option-card" onclick="openForm('jobForm')">
+            <img src="https://cdn-icons-png.flaticon.com/512/3850/3850285.png" alt="Job Image">
+            <h2>Mujhe Job Chahiye</h2>
+            <p>Apna career hamare saath start karein.</p>
+            <button class="btn">Apply Now</button>
+        </div>
+
+        <div class="option-card" onclick="openForm('projectForm')">
+            <img src="https://cdn-icons-png.flaticon.com/512/1087/1087815.png" alt="Project Image">
+            <h2>Project Banwana Hai</h2>
+            <p>Apne business ko online le jayein.</p>
+            <button class="btn">Start Project</button>
+        </div>
+    </main>
+
+    <div id="jobForm" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm('jobForm')">&times;</span>
+            <h2>Job Application Form</h2>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Aapka Naam" required>
+                <input type="email" placeholder="Gmail Address" required>
+                <input type="tel" placeholder="Contact Number" required>
+                <input type="text" placeholder="Padhai (Education)" required>
+                <input type="number" placeholder="Family mein kitne kamane wale hain?" required>
+                
+                <select required>
+                    <option value="">Field Select Karein</option>
+                    <option value="web">Web Development</option>
+                    <option value="design">Graphic Design</option>
+                    <option value="marketing">Digital Marketing</option>
+                </select>
+
+                <div class="radio-group">
+                    <label><input type="radio" name="work" value="WFH"> Work From Home</label>
+                    <label><input type="radio" name="work" value="WFO"> Work From Office</label>
+                </div>
+
+                <select id="jobExp" onchange="checkExp(this)" required>
+                    <option value="fresher">Fresher</option>
+                    <option value="experienced">Experienced</option>
+                </select>
+                <input type="text" id="expLevel" class="hidden" placeholder="Kitna experience hai? (e.g. 2 Years)">
+
+                <textarea placeholder="Apne baare mein thoda batayein..." rows="3"></textarea>
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="projectForm" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm('projectForm')">&times;</span>
+            <h2>Project Requirements</h2>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Project Ka Naam" required>
+                <input type="text" placeholder="Aapka Naam" required>
+                <select required>
+                    <option value="small">Chhota Project</option>
+                    <option value="big">Bada Project</option>
+                </select>
+                <select required>
+                    <option value="shop">Local Shop</option>
+                    <option value="startup">Startup Company</option>
+                    <option value="international">International Company</option>
+                </select>
+                <input type="number" placeholder="Aapka Budget (INR/USD)" required>
+                <input type="text" placeholder="Aapki Location (City/Country)" required>
+                <textarea placeholder="Project ke baare mein detail likhein..." rows="4"></textarea>
+                <button type="submit" class="submit-btn">Submit Project</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="successPopup" class="popup">
+        <div class="popup-box">
+            <div class="icon-success">✔</div>
+            <h3>Thank You!</h3>
+            <p>Aapki inquiry hamare paas pahunch gayi hai. Hum jaldi hi aapse sampark karenge.</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Rahul Shankar | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Toggle Dark/Light Mode
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeBtn');
+    body.classList.toggle('dark-mode');
+    
+    if(body.classList.contains('dark-mode')) {
+        btn.innerHTML = "☀️ Normal Mode";
+    } else {
+        btn.innerHTML = "🌙 Dark Mode";
+    }
+}
+
+// Open and Close Forms
+function openForm(id) {
+    document.getElementById(id).style.display = "block";
+}
+
+function closeForm(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+// Show/Hide Experience Level
+function checkExp(select) {
+    const expInput = document.getElementById('expLevel');
+    if(select.value === 'experienced') {
+        expInput.classList.remove('hidden');
+    } else {
+        expInput.classList.add('hidden');
+    }
+}
+
+// Handle Submit
+function handleSubmit(event) {
+    event.preventDefault();
+    // Close all modals
+    document.getElementById('jobForm').style.display = "none";
+    document.getElementById('projectForm').style.display = "none";
+    // Show Success Popup
+    document.getElementById('successPopup').style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById('successPopup').style.display = "none";
+    location.reload(); // Refresh page to clear form
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    if (event.target.className === 'modal') {
+        event.target.style.display = "none";
+    }
+}
+    </script>
+</body>
+</html>
