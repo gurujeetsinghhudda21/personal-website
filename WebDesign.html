@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio | Web Design Showcase</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.logo span { color: #007bff; }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li { margin-left: 30px; }
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: #007bff; }
+
+/* Hero */
+.hero {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.hero h1 { font-size: 3.5rem; color: #1a1a1a; margin-bottom: 15px; }
+.hero p { font-size: 1.2rem; color: #666; }
+
+/* Projects Grid */
+.projects-section { padding: 80px 8%; }
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: #007bff;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    text-decoration: none;
+    color: inherit;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.card-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-content { padding: 20px; }
+.card-content h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.card-content p { font-size: 0.9rem; color: #777; }
+
+/* Footer */
+footer {
+    background: #1a1a1a;
+    color: white;
+    padding: 60px 8% 20px;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer-brand p { margin-top: 10px; color: #888; max-width: 250px; }
+.footer-brand .logo { color: white; }
+
+.footer-links h4, .footer-social h4 { margin-bottom: 20px; font-size: 1.1rem; }
+.footer-links a, .footer-social a {
+    display: block;
+    color: #888;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover, .footer-social a:hover { color: #007bff; }
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .navbar { padding: 20px 5%; }
+    .nav-links { display: none; } /* Mobile par hum menu hide kar sakte hain ya burger button laga sakte hain */
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">WEB<span>CRAFT</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
+        <h1>Modern Web Designs</h1>
+        <p>A collection of high-end digital experiences.</p>
+    </header>
+
+    <section class="projects-section" id="projects">
+        <h2 class="section-title">Latest Projects</h2>
+        <div class="projects-grid">
+            
+            <a href="project1.html" class="project-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="UI Design">
+                </div>
+                <div class="card-content">
+                    <h3>E-Commerce Dashboard</h3>
+                    <p>Modern UI/UX Interface</p>
+                </div>
+            </a>
+
+            <a href="project2.html" class="project-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" alt="Web Dev">
+                </div>
+                <div class="card-content">
+                    <h3>SaaS Landing Page</h3>
+                    <p>Minimalist & Responsive</p>
+                </div>
+            </a>
+
+            <a href="project3.html" class="project-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600" alt="Design">
+                </div>
+                <div class="card-content">
+                    <h3>Portfolio Concept</h3>
+                    <p>Glassmorphism Style</p>
+                </div>
+            </a>
+
+            <a href="project4.html" class="project-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=600" alt="Branding">
+                </div>
+                <div class="card-content">
+                    <h3>Fashion Blog</h3>
+                    <p>Clean & Elegant</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">WEB<span>CRAFT</span></div>
+                <p>Designing the digital world with precision.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="#">Prototypes</a>
+                <a href="#">Source Code</a>
+                <a href="HireMe.html">Hire Me</a>
+            </div>
+            <div class="footer-social">
+                <h4>Social</h4>
+                <a href="https://www.linkedin.com/in/gurujeet-singh-hudda-033668363/">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Dribbble</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 WebCraft Designs | All Rights Reserved
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Card hover animation check
+const cards = document.querySelectorAll('.project-card');
+cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        console.log("Exploring Design...");
+    });
+});
+    </script>
+</body>
+</html>
