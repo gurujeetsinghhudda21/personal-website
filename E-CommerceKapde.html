@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vyapar Nepal | Premium Clothing</title>
+    <style>
+        :root { --primary: #2c3e50; --accent: #e67e22; --light: #f4f4f4; }
+* { margin:0; padding:0; box-sizing:border-box; font-family: sans-serif; }
+body { background: var(--light); scroll-behavior: smooth; }
+
+/* Navbar */
+.navbar { display:flex; justify-content:space-between; align-items:center; padding:15px 5%; background:#fff; position:fixed; width:100%; top:0; z-index:100; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+.logo { font-size:24px; font-weight:bold; }
+.logo span { color: var(--accent); }
+.nav-links { display:flex; list-style:none; }
+.nav-links li a { margin:0 15px; text-decoration:none; color:#333; font-weight:600; }
+.cart-btn { cursor:pointer; font-size:20px; position:relative; }
+#cart-count { background:red; color:white; border-radius:50%; padding:2px 6px; font-size:12px; position:absolute; top:-10px; right:-10px; }
+
+/* Hero Slider */
+.hero { height:70vh; margin-top:60px; position:relative; overflow:hidden; }
+.slide { position:absolute; width:100%; height:100%; background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; opacity:0; transition:1s; cursor:pointer; }
+.slide.active { opacity:1; }
+.hero-text { text-align:center; color:white; background:rgba(0,0,0,0.5); padding:20px; border-radius:10px; }
+
+/* Product Grid */
+.collection { padding:50px 5%; }
+.title { text-align:center; margin-bottom:30px; font-size:2rem; }
+.product-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px; }
+.product-card { background:#fff; padding:15px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); text-align:center; }
+.product-card img { width:100%; height:250px; object-fit:cover; border-radius:5px; }
+.product-card h3 { margin:10px 0; }
+.product-card .price { color:var(--accent); font-weight:bold; margin-bottom:10px; }
+.btn-group { display:flex; gap:10px; justify-content:center; }
+.btn-group button { padding:8px 12px; border:none; border-radius:4px; cursor:pointer; }
+.add-btn { background:var(--primary); color:white; }
+.order-btn { background:var(--accent); color:white; }
+
+/* Cart Modal */
+.modal { display:none; position:fixed; z-index:200; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7); }
+.cart-content, .modal-content { background:white; width:90%; max-width:500px; margin:50px auto; padding:20px; border-radius:10px; position:relative; }
+.cart-item { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #ddd; padding:10px 0; }
+.qty-btn { background:#eee; border:none; padding:5px 10px; cursor:pointer; font-weight:bold; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links { display:none; }
+    .hero { height:50vh; }
+    .hero-text h2 { font-size:1.5rem; }
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">VYAPAR <span>NEPAL</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#men">Men</a></li>
+            <li><a href="#women">Women</a></li>
+            <li><a href="#kids">Kids</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="cart-btn" onclick="toggleCartModal()">
+            <i class="fas fa-shopping-bag"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="slider">
+            <div class="slide active" onclick="scrollToSection('men')" style="background-image: url('https://images.unsplash.com/photo-1490514525670-ce2030502fb9?auto=format&fit=crop&w=1500&q=80')">
+                <div class="hero-text">
+                    <h2>Premium Men's Wear</h2>
+                    <p>Nepal's Finest Collection</p>
+                </div>
+            </div>
+            <div class="slide" onclick="scrollToSection('women')" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b830c603d?auto=format&fit=crop&w=1500&q=80')">
+                <div class="hero-text">
+                    <h2>Elegant Women Styles</h2>
+                    <p>New Season, New Look</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection" id="men">
+        <h2 class="title">New Collection</h2>
+        <div class="product-grid" id="product-list">
+            </div>
+    </section>
+
+    <div id="cart-modal" class="modal">
+        <div class="cart-content">
+            <span class="close" onclick="toggleCartModal()">&times;</span>
+            <h2>Aapka Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">Total: Rs. <span id="total-price">0</span></div>
+            <button class="checkout-btn" onclick="openAddressForm()">Order Now</button>
+        </div>
+    </div>
+
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <div id="address-step">
+                <h3>Delivery Details</h3>
+                <input type="text" id="cust-name" placeholder="Full Name">
+                <input type="text" id="cust-addr" placeholder="Address (Nepal City, Area)">
+                <input type="tel" id="cust-phone" placeholder="Mobile Number">
+                <button onclick="showPayment()">Proceed to Payment</button>
+            </div>
+            <div id="payment-step" style="display:none;">
+                <h3>Select Payment Method</h3>
+                <div class="payment-options">
+                    <label><input type="radio" name="pay" value="Esewa"> eSewa / FonePay</label>
+                    <label><input type="radio" name="pay" value="Card"> Debit/Credit Card</label>
+                    <label><input type="radio" name="pay" value="COD" checked> Cash on Delivery</label>
+                </div>
+                <button onclick="completeOrder()">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-info">
+            <h3>VYAPAR NEPAL</h3>
+            <p>Kathmandu, Nepal | +977 98XXXXXXXX</p>
+            <div class="socials">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-whatsapp"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+    { id: 1, name: "Premium Cotton Shirt", price: 1500, brand: "Vyapar Exclusive", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" },
+    { id: 2, name: "Slim Fit Jeans", price: 2200, brand: "Denim Nepal", img: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500" },
+    { id: 3, name: "Summer Dress", price: 1800, brand: "Vogue Nepal", img: "https://images.unsplash.com/photo-1572804013307-f9a8a3ef819b?w=500" }
+];
+
+let cart = [];
+
+// Load Products
+function displayProducts() {
+    const grid = document.getElementById('product-list');
+    grid.innerHTML = products.map(p => `
+        <div class="product-card">
+            <img src="${p.img}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>${p.brand}</p>
+            <div class="price">Rs. ${p.price}</div>
+            <div class="btn-group">
+                <button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+                <button class="order-btn" onclick="directOrder(${p.id})">Order Now</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Hero Slider
+let slideIndex = 0;
+function autoSlider() {
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach(s => s.classList.remove('active'));
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].classList.add('active');
+}
+setInterval(autoSlider, 3000);
+
+// Cart Logic
+function addToCart(id) {
+    const item = products.find(p => p.id === id);
+    const inCart = cart.find(c => c.id === id);
+    if(inCart) {
+        inCart.qty++;
+    } else {
+        cart.push({...item, qty: 1});
+    }
+    updateCartUI();
+}
+
+function updateCartUI() {
+    document.getElementById('cart-count').innerText = cart.length;
+    const cartItems = document.getElementById('cart-items');
+    let total = 0;
+    
+    cartItems.innerHTML = cart.map(item => {
+        total += item.price * item.qty;
+        return `
+            <div class="cart-item">
+                <div><h4>${item.name}</h4><small>Rs. ${item.price}</small></div>
+                <div>
+                    <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                    <span>${item.qty}</span>
+                    <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    document.getElementById('total-price').innerText = total;
+}
+
+function changeQty(id, delta) {
+    const item = cart.find(c => c.id === id);
+    item.qty += delta;
+    if(item.qty <= 0) cart = cart.filter(c => c.id !== id);
+    updateCartUI();
+}
+
+// Modals & Forms
+function toggleCartModal() {
+    const m = document.getElementById('cart-modal');
+    m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+
+function openAddressForm() {
+    if(cart.length === 0) return alert("Cart khali hai!");
+    document.getElementById('cart-modal').style.display = 'none';
+    document.getElementById('order-modal').style.display = 'block';
+}
+
+function directOrder(id) {
+    cart = []; // Clear and add only this item
+    addToCart(id);
+    openAddressForm();
+}
+
+function showPayment() {
+    document.getElementById('address-step').style.display = 'none';
+    document.getElementById('payment-step').style.display = 'block';
+}
+
+function completeOrder() {
+    alert("Dhanyabaad! Aapka order receive ho gaya hai.");
+    location.reload();
+}
+
+window.onload = displayProducts;
+    </script>
+</body>
+</html>
