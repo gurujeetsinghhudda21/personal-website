@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeDecor Hub | Modern Home Designs & Interiors</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #fcfcfc;
+    color: #333;
+    line-height: 1.7;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.logo span { color: #8B4513; } /* Earthy Brown for elegance */
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li { margin-left: 30px; }
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover { color: #8B4513; }
+
+/* Hero Section */
+.hero {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), 
+                url('https://images.unsplash.com/photo-1556912173-3bb406fa787d?w=1200');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+.hero h1 span { color: #8B4513; }
+.hero p { font-size: 1.2rem; color: #666; }
+
+/* Designs Grid Section */
+.designs-section { padding: 80px 8%; }
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 2.5rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    width: 80px;
+    height: 3px;
+    background: #8B4513;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.designs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.design-card {
+    text-decoration: none;
+    color: inherit;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.design-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.design-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.design-card:hover img { transform: scale(1.05); }
+
+.card-info { padding: 20px; }
+.card-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+.card-info p { font-size: 0.95rem; color: #777; }
+
+/* Footer */
+footer {
+    background: #222;
+    color: #ddd;
+    padding: 60px 8% 20px;
+    margin-top: 80px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col { flex: 1; min-width: 200px; }
+.footer-col .logo { color: #fff; margin-bottom: 15px; }
+.footer-col p, .footer-col ul { font-size: 0.95rem; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col a { color: #bbb; text-decoration: none; transition: 0.3s; }
+.footer-col a:hover { color: #8B4513; }
+.footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid #444;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .section-title { font-size: 2rem; }
+    .navbar { padding: 20px 5%; }
+    .nav-links { display: none; } /* Hamburger menu can be added for mobile */
+    .footer-container { flex-direction: column; text-align: center; }
+    .footer-col { margin-bottom: 30px; }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">HOME<span>DESIGN</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#designs">Designs</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
+        <h1>Crafting Your Dream <span>Living Spaces.</span></h1>
+        <p>Explore breathtaking interior and exterior home designs.</p>
+    </header>
+
+    <section class="designs-section" id="designs">
+        <h2 class="section-title">Our Latest Creations</h2>
+        <div class="designs-grid">
+            
+            <a href="design1.html" class="design-card">
+                <img src="https://images.unsplash.com/photo-1512918728675-ed5a7eb9f38f?w=600" alt="Modern Living Room">
+                <div class="card-info">
+                    <h3>Minimalist Living Room</h3>
+                    <p>Clean Lines & Comfort</p>
+                </div>
+            </a>
+
+            <a href="design2.html" class="design-card">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba38135?w=600" alt="Luxury Exterior">
+                <div class="card-info">
+                    <h3>Contemporary Villa</h3>
+                    <p>Sleek Exterior Design</p>
+                </div>
+            </a>
+
+            <a href="design3.html" class="design-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-dac2697dc29e?w=600" alt="Spacious Kitchen">
+                <div class="card-info">
+                    <h3>Modular Kitchen Design</h3>
+                    <p>Functionality Meets Style</p>
+                </div>
+            </a>
+
+            <a href="design4.html" class="design-card">
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600" alt="Cozy Bedroom">
+                <div class="card-info">
+                    <h3>Serene Bedroom Retreat</h3>
+                    <p>Peaceful & Elegant</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">HOME<span>DESIGN</span></div>
+                <p>Turning houses into homes, one design at a time.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Interior Design</a></li>
+                    <li><a href="#">Exterior Design</a></li>
+                    <li><a href="#">Consultation</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>Email: info@homedesign.com</p>
+                <p>Phone: +91 98765 43210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 HomeDesign Hub | All Rights Reserved
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Example: Log when a design card is clicked
+document.querySelectorAll('.design-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const designName = this.querySelector('h3').innerText;
+        console.log(`Navigating to design: ${designName}`);
+    });
+});
+    </script>
+</body>
+</html>
